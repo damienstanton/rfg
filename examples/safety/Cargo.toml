@@ -1,0 +1,9 @@
+[package]
+name = "safety"
+version = "0.1.0"
+authors = ["Damien Stanton <damien.stanton@gmail.com>"]
+edition = "2018"
+
+[[bin]]
+name = "safety"
+path = "src/main.rs"

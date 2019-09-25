@@ -1,0 +1,12 @@
+[package]
+name = "streams-demo"
+version = "0.1.0"
+authors = ["Damien Stanton <damien.stanton@gmail.com>"]
+edition = "2018"
+
+[[bin]]
+name="streams-demo"
+path="src/main.rs"
+
+[dependencies]
+futures-preview = { version = "=0.3.0-alpha.18", features = ["async-await", "nightly"] }

@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `rusty` crate."><meta name="keywords" content="rust, rustlang, rust-lang, rusty"><title>rusty - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="shortcut icon" href="../favicon.ico"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../rusty/index.html'><div class='logo-container'><img src='../rust-logo.png' alt='logo'></div></a><p class='location'>Crate rusty</p><div class="sidebar-elems"><a id='all-types' href='all.html'><p>See all rusty's items</p></a><div class="block items"><ul><li><a href="#structs">Structs</a></li><li><a href="#traits">Traits</a></li><li><a href="#functions">Functions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'rusty', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/rusty/lib.rs.html#1-154' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>rusty</a></span></h1><div class='docblock'><p>Tour of Rust's interesting features as compared to common patterns in Go</p>
+<ul>
+<li>Build tooling</li>
+<li>Documentation</li>
+<li>Package management</li>
+<li>Testing</li>
+<li>Handling failures (panic!, panic='abort', Result)</li>
+</ul>
+
+<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
+<span class="kw">enum</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span> {
+    <span class="prelude-val">Ok</span>(<span class="ident">T</span>),
+    <span class="prelude-val">Err</span>(<span class="ident">E</span>),
+}</pre></div>
+<ul>
+<li>Generics</li>
+</ul>
+
+<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
+<span class="kw">fn</span> <span class="ident">largest_i32</span>(<span class="ident">list</span>: <span class="kw-2">&amp;</span>[<span class="ident">i32</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">largest</span> <span class="op">=</span> <span class="ident">list</span>[<span class="number">0</span>];
+
+    <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">item</span> <span class="kw">in</span> <span class="ident">list</span>.<span class="ident">iter</span>() {
+        <span class="kw">if</span> <span class="ident">item</span> <span class="op">&gt;</span> <span class="ident">largest</span> {
+            <span class="ident">largest</span> <span class="op">=</span> <span class="ident">item</span>;
+        }
+    }
+
+    <span class="ident">largest</span>
+}
+
+<span class="kw">fn</span> <span class="ident">largest_char</span>(<span class="ident">list</span>: <span class="kw-2">&amp;</span>[<span class="ident">char</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">char</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">largest</span> <span class="op">=</span> <span class="ident">list</span>[<span class="number">0</span>];
+
+    <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">item</span> <span class="kw">in</span> <span class="ident">list</span>.<span class="ident">iter</span>() {
+        <span class="kw">if</span> <span class="ident">item</span> <span class="op">&gt;</span> <span class="ident">largest</span> {
+            <span class="ident">largest</span> <span class="op">=</span> <span class="ident">item</span>;
+        }
+    }
+
+    <span class="ident">largest</span>
+}
+
+<span class="kw">fn</span> <span class="ident">largest</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">list</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">T</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">largest</span> <span class="op">=</span> <span class="ident">list</span>[<span class="number">0</span>];
+
+    <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">item</span> <span class="kw">in</span> <span class="ident">list</span>.<span class="ident">iter</span>() {
+        <span class="kw">if</span> <span class="ident">item</span> <span class="op">&gt;</span> <span class="ident">largest</span> {
+            <span class="ident">largest</span> <span class="op">=</span> <span class="ident">item</span>;
+        }
+    }
+
+    <span class="ident">largest</span>
+}
+</pre></div>
+<ul>
+<li>Traits vs. Interfaces</li>
+<li>Lifetimes to prevent dangling references</li>
+<li>Trait Objects (and dyn)</li>
+<li>Box, Rc, Ref, RefCell</li>
+<li>MPSC channels &amp; threads</li>
+<li>Mutex (non re-entrant)</li>
+<li>Send marker trait indicates that ownership of the type implementing Send can be transferred between threads</li>
+<li>Sync marker trait indicates that it is safe for the type implementing Sync to be referenced from multiple threads</li>
+</ul>
+<p>Good example from the book:</p>
+<blockquote>
+<p>If you’ll only ever have homogeneous collections, using generics and trait bounds is preferable
+because the definitions will be monomorphized at compile time to use the concrete types.
+On the other hand, with the method using trait objects, one Struct instance can hold a Vec<T>
+that contains a Box<ThingA> as well as a Box<ThingB></p>
+</blockquote>
+<ul>
+<li>Is Rust OO? It can emulate patterns, but as in Go this increases coupling which is never a
+good thing. See: https://doc.rust-lang.org/1.30.0/book/second-edition/ch17-03-oo-design-patterns.html</li>
+<li>Look at patterns (esp. if-let, while-let): https://doc.rust-lang.org/1.30.0/book/second-edition/ch18-01-all-the-places-for-patterns.html</li>
+</ul>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table><tr class='module-item'><td><a class="struct" href="struct.NewsArticle.html" title='rusty::NewsArticle struct'>NewsArticle</a></td><td class='docblock-short'><p>an article</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Screen.html" title='rusty::Screen struct'>Screen</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="struct" href="struct.Tweet.html" title='rusty::Tweet struct'>Tweet</a></td><td class='docblock-short'><p>a tweet</p>
+</td></tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table><tr class='module-item'><td><a class="trait" href="trait.Draw.html" title='rusty::Draw trait'>Draw</a></td><td class='docblock-short'></td></tr><tr class='module-item'><td><a class="trait" href="trait.Summary.html" title='rusty::Summary trait'>Summary</a></td><td class='docblock-short'><p>a generic method for summarization</p>
+</td></tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table><tr class='module-item'><td><a class="fn" href="fn.largest.html" title='rusty::largest fn'>largest</a></td><td class='docblock-short'><p>returns the largest item in the given list</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.longest.html" title='rusty::longest fn'>longest</a></td><td class='docblock-short'><p>returns the longer of two given strings</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g., <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g., <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g., <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "rusty";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>
