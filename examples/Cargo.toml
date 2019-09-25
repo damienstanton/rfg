@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "calculate_len",
+    "lifetimes",
+    "safety",
+    "traits"
+]
